@@ -13,27 +13,27 @@ xout_rgb = pipeline.createXLinkOut()
 xout_rgb.setStreamName('rgb')
 cam_rgb.preview.link(xout_rgb.input)
 
-cam_depth = pipeline.createMonoDepth()
-cam_depth.setConfidenceThreshold(200)
-cam_depth.setOutputDepth(True)
-cam_depth.setPreviewSize(640, 480)
+# cam_depth = pipeline.createMonoDepth()
+# cam_depth.setConfidenceThreshold(200)
+# cam_depth.setOutputDepth(True)
+# cam_depth.setPreviewSize(640, 480)
 
-xout_depth = pipeline.createXLinkOut()
-xout_depth.setStreamName('depth')
-cam_depth.out.link(xout_depth.input)
+# xout_depth = pipeline.createXLinkOut()
+# xout_depth.setStreamName('depth')
+# cam_depth.out.link(xout_depth.input)
 
 device = depthai.Device(pipeline)
 device.startPipeline()
 
 q_rgb = device.getOutputQueue(name='rgb')
-q_depth = device.getOutputQueue(name='depth')
+# q_depth = device.getOutputQueue(name='depth')
 
 while True:
     in_rgb = q_rgb.get()
-    in_depth = q_depth.get()
+#     in_depth = q_depth.get()
 
     frame = in_rgb.getCvFrame()
-    depth = in_depth.getFrame()
+#     depth = in_depth.getFrame()
 
     # Define the range of white color in HSV
     lower_white = np.array([0, 0, 200])
